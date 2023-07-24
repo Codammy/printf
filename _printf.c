@@ -11,6 +11,8 @@ int _printf(const char *format, ...)
 	va_list opt;
 	int num = 0, len, i = 0;
 
+	if (!format)
+		return (0);
 	va_start(opt, format);
 	len = strlen(format);
 	while(i < len)

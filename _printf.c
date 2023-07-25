@@ -1,3 +1,4 @@
+
 #include "main.h"
 
 /**
@@ -12,35 +13,25 @@ int _printf(const char *format, ...)
 	int num = 0, len, i = 0;
 
 	if (!format)
-		return (0);
+		return (-1);
 	va_start(opt, format);
 	len = strlen(format);
-	while(i < len)
+	while (i < len)
 	{
 		if (format[i] == '%')
-			switch (format[i + 1])
-			{
-				case '%':
-					_putchar('%');
-					i++;
-					break;
-				case 'c':
-					_putchar (va_arg(opt, int));
-					i++;
-					break;
-				case 's':
-					num += _string(va_arg(opt, char *));
-					i++;
-					break;
-				case 'i':
-					num += _printd("%i", va_arg(opt, int));
-					i++;
-					break;
-				case 'd':
-					num += _printd("%d", va_arg(opt, int));
-					i++;
-					break;
-			}
+		{
+			if (format[i + 1] == 0)
+				return (-1);
+			if (format[i + 1] == '%')
+				_putchar('%');
+			if (format[i + 1] == 'c')
+				_putchar (va_arg(opt, int));
+			if (format[i + 1] == 's')
+				num += _string(va_arg(opt, char *));
+			if ((format[i + 1] == 'i') || (format[i + 1] == 'd'))
+				num += _printd("%d", va_arg(opt, int));
+			i++;
+		}
 		else
 			_putchar(format[i]);
 		i++;

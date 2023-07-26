@@ -12,7 +12,10 @@ int _string(char *str)
 
 	j = 0;
 	if (!str)
-		return (0);
+	{
+		j = _printf("(null)");
+		return (j - 1);
+	}
 	while (str[j])
 		_putchar(str[j++]);
 

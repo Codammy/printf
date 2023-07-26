@@ -22,8 +22,13 @@ int _printf(const char *format, ...)
 		{
 			if (format[i + 1] == 0)
 				return (-1);
-			if (format[i + 1] == '%')
+			if (format[i + 1] == '!' || format[i + 1] == 'K')
+			{
 				_putchar('%');
+				_putchar(format[i + 1]);
+			}
+			if (format[i + 1] == '%')
+				_putchar(format[i + 1]);
 			if (format[i + 1] == 'c')
 				_putchar (va_arg(opt, int));
 			if (format[i + 1] == 's')
